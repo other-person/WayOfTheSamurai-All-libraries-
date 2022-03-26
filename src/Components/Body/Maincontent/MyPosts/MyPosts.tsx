@@ -1,6 +1,17 @@
 import React from "react";
 import s from "./MyPosts.module.css"
 
+type ItemPostPropsType = {
+    photo: string
+    message: string
+}
+const ItemPost = (props: ItemPostPropsType) => {
+    return (
+        <div className={s.Item}>
+            <img src={props.photo} alt=""/> <p>{props.message}</p>
+        </div>
+    )
+}
 export const MyPosts = () => {
     return (
         <div className={s.MyPosts}>
@@ -15,21 +26,20 @@ export const MyPosts = () => {
 
             <div className={s.Posts}>
                 <div className={s.Item}>
-                    <img src="http://www.olofmp3.ru/images_open/mikhailglinka.jpg" alt=""/> <p>Hi all!</p>
+                    <ItemPost photo="http://www.olofmp3.ru/images_open/mikhailglinka.jpg" message="Hi all!"/>
                 </div>
 
                 <div className={s.Item}>
-                    <img src="https://www.olofmp3.ru/images_open/skryabin.jpg" alt=""/> <p>Privet gospoda!</p>
+                    <ItemPost photo="https://www.olofmp3.ru/images_open/skryabin.jpg" message="Privet gospoda!"/>
+
                 </div>
 
                 <div className={s.Item}>
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAHElpwk1RTSPjXLZbQSq2ubcBBftpm64B-w&usqp=CAU"
-                        alt=""/> <p>Hi people!</p>
+                    <ItemPost photo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAHElpwk1RTSPjXLZbQSq2ubcBBftpm64B-w&usqp=CAU" message="Hi people!"/>
                 </div>
 
                 <div className={s.Item}>
-                    <img src="http://www.olofmp3.ru/images_open/stravinsky.jpg" alt=""/><p>Yo Yo Yo!</p>
+                    <ItemPost photo="http://www.olofmp3.ru/images_open/stravinsky.jpg" message="Yo Yo Yo!"/>
                 </div>
 
             </div>

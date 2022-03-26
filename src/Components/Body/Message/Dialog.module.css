@@ -1,0 +1,45 @@
+.Dialog {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.DialogItems {
+    max-width: 100%;
+    border-radius: 13px 13px;
+    background-color: #fff;
+    padding: 0 20px;
+}
+
+.DialogItems ul {
+    list-style: none;
+    line-height: 2;
+    padding: 0;
+}
+.DialogItems a {
+    text-decoration: none;
+    color: #2f5c7e;
+    font-size: 20px;
+}
+
+a.active {
+    color: #092236;
+    border-bottom: 1px solid #092236;
+}
+
+.DialogText {
+    max-width: 450px;
+    width: 100%;
+    border-radius: 13px 13px;
+    background-color: #fff;
+    padding:  0 20px;
+
+}
+
+.DialogText ul {
+    list-style: none;
+    font-size: 20px;
+    color: #2f5c7e;
+    line-height: 2;
+    padding: 0;
+}
