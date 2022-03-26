@@ -1,6 +1,6 @@
 .Navbar {
     height: 100%;
-    width: 17%;
+    width: 200px;
     border-radius: 13px 13px;
     background-color: #fff;
 }
@@ -10,14 +10,16 @@
     margin-bottom: 50px;
 }
 
-.Wrapper_Navbar a {
+.Item a {
     width: 100%;
     text-decoration: none;
     font-size: 20px;
     color: #2f5c7e;
     line-height: 2;
+    padding-left: 5px;
+
 }
-
-.Item {
-
+a.active {
+    color: #092236;
+    border-left: 1px solid #092236;
 }
