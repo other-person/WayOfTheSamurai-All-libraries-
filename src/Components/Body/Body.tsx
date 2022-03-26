@@ -1,11 +1,11 @@
 import React from "react";
-import "./Body.css"
+import s from "./Body.module.css"
 import {Maincontent} from "./Maincontent/Maincontent";
 import {Navbar} from "./Navbar/Navbar";
 
 export const Body = () => {
     return (
-        <div className="Body">
+        <div className={s.Body}>
             <Navbar/>
             <Maincontent/>
         </div>
