@@ -1,0 +1,24 @@
+.MyInfo {
+    padding: 0 10px 10px 10px;
+
+}
+
+.WrapperMyInfo {
+    display: flex;
+}
+
+.MyLogo img {
+    border-radius: 13px;
+}
+
+.MyDescription {
+    padding: 15px;
+}
+
+.MyDescription span {
+    display: block;
+    line-height: 2;
+    font-size: 18px;
+    color: #163b5b;
+    font-family: 'Roboto', sans-serif;
+}

@@ -1,0 +1,6 @@
+.Body {
+    display: flex;
+    gap: 15px;
+    border-radius: 0 0 13px 13px;
+    padding: 20px;
+}

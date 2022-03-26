@@ -1,0 +1,19 @@
+.Header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    border-radius: 13px 13px 0 0;
+    background-color: #fff;
+}
+.Logo img {
+    height: 80px;
+    width: 80px;
+    border-radius: 13px;
+}
+.DescriptionSite {
+    padding: 20px 0 0 20px;
+    display: block;
+    font-size: 30px;
+    font-family: 'Pacifico', cursive;
+    color: #163b5b;
+}

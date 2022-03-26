@@ -1,0 +1,29 @@
+.MyPosts {
+    padding: 10px;
+}
+
+.MyPosts span {
+    font-size: 22px;
+    color: #163b5b;
+    font-family: 'Roboto', sans-serif;
+}
+
+.Text {
+    margin-top: 30px;
+}
+
+.Text textarea {
+    width: 50%;
+    height: 50px;
+    border-radius: 13px;
+}
+.Button button{
+    font-size: 18px;
+    padding: 5px 15px;
+    color: #163b5b;
+    font-family: 'Roboto', sans-serif;
+    border-style: none;
+    border: 1px solid #163b5b;
+    border-radius: 6px;
+    margin-top: 10px;
+}
