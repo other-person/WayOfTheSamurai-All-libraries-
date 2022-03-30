@@ -28,7 +28,7 @@ a.active {
 }
 
 .DialogText {
-    max-width: 450px;
+    max-width: 400px;
     width: 100%;
     border-radius: 13px 13px;
     background-color: #fff;
@@ -42,4 +42,13 @@ a.active {
     color: #2f5c7e;
     line-height: 2;
     padding: 0;
+}
+.DialogText ul li {
+    margin-bottom: 20px;
+}
+.DialogText :nth-child(odd)  {
+    text-align: left;
+}
+.DialogText :nth-child(even)  {
+    text-align: right;
 }

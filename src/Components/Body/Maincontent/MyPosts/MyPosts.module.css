@@ -36,7 +36,8 @@
     margin-top: 30px;
 }
 .Item {
-    display: flex;
+    /*display: flex;*/
+
 
 }
 .Item img{

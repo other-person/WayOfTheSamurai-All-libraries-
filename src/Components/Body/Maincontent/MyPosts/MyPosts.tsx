@@ -1,52 +1,58 @@
 import React from "react";
 import s from "./MyPosts.module.css"
+import {MyPostsDataType} from "../../../../Redux/State";
 
 type ItemPostPropsType = {
-    photo: string
+    avatar: string
     message: string
 }
+
 const ItemPost = (props: ItemPostPropsType) => {
+
     return (
         <div className={s.Item}>
-            <img src={props.photo} alt=""/> <p>{props.message}</p>
+            <img src={props.avatar} alt=""/> <p>{props.message}</p>
         </div>
-    )
+    );
 }
-export const MyPosts = () => {
+type myPostsType = {
+    MyPostsData: Array<MyPostsDataType>
+}
+
+export const MyPosts = (props: myPostsType) => {
+
+    const PostsElements = props.MyPostsData.map(posts => <ItemPost avatar={posts.avatar} message={posts.message}/>)
+
+    let newPostElement = React.createRef();
+
+    let addPost = () => {
+
+        let text = newPostElement.current.value
+        alert(text)
+    }
     return (
+
         <div className={s.MyPosts}>
+
             <span>My posts</span>
 
             <div className={s.Text}>
-                <textarea></textarea>
+                <textarea ref={newPostElement}></textarea>
             </div>
-            <div className={s.Button}>
-                <button>Send</button>
-            </div>
+    <div className={s.Button}>
+        <button onClick={addPost}>Send</button>
+    </div>
 
-            <div className={s.Posts}>
-                <div className={s.Item}>
-                    <ItemPost photo="http://www.olofmp3.ru/images_open/mikhailglinka.jpg" message="Hi all!"/>
-                </div>
+    <div className={s.Posts}>
 
-                <div className={s.Item}>
-                    <ItemPost photo="https://www.olofmp3.ru/images_open/skryabin.jpg" message="Privet gospoda!"/>
+        <div className={s.Item}>
 
-                </div>
+            {PostsElements}
 
-                <div className={s.Item}>
-                    <ItemPost photo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAHElpwk1RTSPjXLZbQSq2ubcBBftpm64B-w&usqp=CAU" message="Hi people!"/>
-                </div>
-
-                <div className={s.Item}>
-                    <ItemPost photo="http://www.olofmp3.ru/images_open/stravinsky.jpg" message="Yo Yo Yo!"/>
-                </div>
-
-            </div>
         </div>
-
-
-    )
+    </div>
+</div>
+)
 }
 
 

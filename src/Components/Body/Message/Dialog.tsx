@@ -1,55 +1,52 @@
 import React from "react";
 import s from "./Dialog.module.css"
 import {NavLink} from "react-router-dom";
+import {DialogItemDataType, DialogTextDataType} from "../../../Redux/State";
 
-type ItemPropsType = {
+type DialogType = {
+    DialogItemData: Array<DialogItemDataType>
+    DialogsTextData: Array<DialogTextDataType>
+}
+type DialogItemType = {
     id: string
     name: string
-}
-const Item = (props: ItemPropsType) => {
-    return (
-        <NavLink to={"/Messages/" + props.id} activeClassName={s.active}>{props.name}</NavLink>
-    )
 }
 type DialogTextType = {
     message: string
 }
 
-const DialogText =( props: DialogTextType )=> {
-    return(
+const Item = (props: DialogItemType) => {
+    return (
+        <li className={s.Item}>
+            <NavLink to={"/Messages/" + props.id} activeClassName={s.active}>{props.name}</NavLink>
+        </li>
+    )
+}
+
+const DialogText = (props: DialogTextType) => {
+    return (
         <li className={s.DialogItemText}>{props.message}</li>
     )
 }
-export const Dialog = () => {
+
+export const Dialog = (props: DialogType) => {
+
+    let DialogItems = props.DialogItemData.map(dialog => <Item id={dialog.id} name={dialog.name}/>)
+    let DialogContent = props.DialogsTextData.map(text => <DialogText message={text.message}/>)
+
     return (
         <div className={s.Dialog}>
             <div className={s.DialogItems}>
                 <ul>
-                    <li className={s.Item }>
-                        <Item id="1" name="Sveta"/>
-                    </li>
                     <li className={s.Item}>
-                        <Item id="2" name="Vova"/>
-                    </li>
-                    <li className={s.Item}>
-                        <Item id="3" name="Jeka"/>
-                    </li>
-                    <li className={s.Item}>
-                        <Item id="4" name="Sergey"/>
-                    </li>
-                    <li className={s.Item}>
-                        <Item id="5" name="Ivan"/>
+                        {DialogItems}
                     </li>
                 </ul>
             </div>
 
             <div className={s.DialogText}>
                 <ul>
-                    <DialogText message="Hello"/>
-                    <DialogText message="How are you?"/>
-                    <DialogText message="Tomorrow we go to the ZOO"/>
-                    <DialogText message="Cool!!!"/>
-
+                    {DialogContent}
                 </ul>
             </div>
 
