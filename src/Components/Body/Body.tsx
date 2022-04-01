@@ -7,34 +7,42 @@ import {Dialog} from "./Message/Dialog";
 import {Music} from "./Music/Music";
 import {News} from "./News/News";
 import {Settings} from "./Settings/Settings";
-import {DialogItemDataType, DialogTextDataType, MyPostsDataType, rootStateType} from "../../Redux/State";
+import {changeNewText, dialogItemDataType, dialogTextDataType, myPostsDataType, rootStateType} from "../../Redux/State";
 
 type BodyPropsType = {
     state: rootStateType
-    MyPostsData: Array<MyPostsDataType>
-    DialogItemData: Array<DialogItemDataType>
-    DialogsTextData: Array<DialogTextDataType>
+    myPostsData: Array<myPostsDataType>
+    dialogItemData: Array<dialogItemDataType>
+    dialogsTextData: Array<dialogTextDataType>
+    addPost: (postText: string) => void
+    messageForNewPost: string
+    changeNewPost:(newText:string)=>void
 }
 
 export const Body = (props: BodyPropsType) => {
 
     return (
-        <BrowserRouter>
-            <div className={s.Body}>
 
-                <Navbar/>
+        <div className={s.Body}>
 
-                <Route path="/Profile" render={() => <MainContent MyPostsData={props.state.MyPostsDataPage.MyPostsData}/>}/>
-                <Route path="/Messages"
-                       render={() => <Dialog
-                           DialogItemData={props.state.DialogItemDataPage.DialogItemData}
-                           DialogsTextData={props.DialogsTextData}/>}/>
-                <Route path="/News" render={() => <News/>}/>
-                <Route path="/Music" render={() => <Music/>}/>
-                <Route path="/Settings" render={() => <Settings/>}/>
+            <Navbar/>
+
+            <Route path="/Profile" render={() => <MainContent
+                myPostsData={props.state.myPostsDataPage.myPostsData}
+                addPost={props.addPost}
+                messageForNewPost = {props.state.myPostsDataPage.messageForNewPost}
+                changeNewPost = {changeNewText}
+            />}/>
+            <Route path="/Messages"
+                   render={() => <Dialog
+                       dialogItemData={props.state.dialogItemDataPage.dialogItemData}
+                       dialogsTextData={props.dialogsTextData}/>}/>
+            <Route path="/News" render={() => <News/>}/>
+            <Route path="/Music" render={() => <Music/>}/>
+            <Route path="/Settings" render={() => <Settings/>}/>
 
 
-            </div>
-        </BrowserRouter>
+        </div>
+
     )
 }

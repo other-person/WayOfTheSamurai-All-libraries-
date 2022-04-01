@@ -1,11 +1,11 @@
 import React from "react";
 import s from "./Dialog.module.css"
 import {NavLink} from "react-router-dom";
-import {DialogItemDataType, DialogTextDataType} from "../../../Redux/State";
+import {dialogItemDataType, dialogTextDataType} from "../../../Redux/State";
 
 type DialogType = {
-    DialogItemData: Array<DialogItemDataType>
-    DialogsTextData: Array<DialogTextDataType>
+    dialogItemData: Array<dialogItemDataType>
+    dialogsTextData: Array<dialogTextDataType>
 }
 type DialogItemType = {
     id: string
@@ -31,8 +31,8 @@ const DialogText = (props: DialogTextType) => {
 
 export const Dialog = (props: DialogType) => {
 
-    let DialogItems = props.DialogItemData.map(dialog => <Item id={dialog.id} name={dialog.name}/>)
-    let DialogContent = props.DialogsTextData.map(text => <DialogText message={text.message}/>)
+    let DialogItems = props.dialogItemData.map(dialog => <Item key={dialog.id} id={dialog.id} name={dialog.name}/>)
+    let DialogContent = props.dialogsTextData.map(text => <DialogText message={text.message}/>)
 
     return (
         <div className={s.Dialog}>

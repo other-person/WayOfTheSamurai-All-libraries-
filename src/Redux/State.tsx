@@ -1,40 +1,47 @@
 import React from "react";
 import {v1} from "uuid";
 
-export type MyPostsDataType = {
+let rerenderEntireTree = ()=> {
+    console.log("Hello")
+}
+
+export type myPostsDataType = {
     id: string
     avatar: string
     message: string
 }
 
-export type DialogItemDataType = {
+export type dialogItemDataType = {
     id: string
     name: string
 }
 
-export type DialogTextDataType = {
+export type dialogTextDataType = {
     message: string
 }
-export type DialogItemDataPageType = {
-    DialogItemData: Array<DialogItemDataType>
+
+export type dialogItemDataPageType = {
+    dialogItemData: Array<dialogItemDataType>
 }
 export type myPostsDataPageType = {
-    MyPostsData: Array<MyPostsDataType>
+    myPostsData: Array<myPostsDataType>
+    messageForNewPost: string
 }
 export type DialogTextDataPageType = {
-    DialogTextData: Array<DialogTextDataType>
+    dialogTextData: Array<dialogTextDataType>
 }
 
 export type rootStateType = {
-    MyPostsDataPage: myPostsDataPageType
-    DialogItemDataPage: DialogItemDataPageType
-    DialogTextDataPage: DialogTextDataPageType
+    myPostsDataPage: myPostsDataPageType
+    dialogItemDataPage: dialogItemDataPageType
+    dialogTextDataPage: DialogTextDataPageType
 }
 
 export let state: rootStateType = {
 
-    MyPostsDataPage: {
-        MyPostsData: [
+    myPostsDataPage: {
+        messageForNewPost: "",
+        myPostsData: [
             {id: v1(), avatar: "http://www.olofmp3.ru/images_open/mikhailglinka.jpg", message: "Hi all!"},
             {id: v1(), avatar: "https://www.olofmp3.ru/images_open/skryabin.jpg", message: "Privet gospoda!"},
             {
@@ -43,10 +50,10 @@ export let state: rootStateType = {
                 message: "Hi people!"
             },
             {id: v1(), avatar: "http://www.olofmp3.ru/images_open/stravinsky.jpg", message: "Yo Yo Yo!"}
-        ]
+        ],
     },
-    DialogItemDataPage: {
-        DialogItemData: [
+    dialogItemDataPage: {
+        dialogItemData: [
             {id: v1(), name: "Sveta"},
             {id: v1(), name: "Vova"},
             {id: v1(), name: "Jeka"},
@@ -55,13 +62,32 @@ export let state: rootStateType = {
         ]
     },
 
-    DialogTextDataPage: {
-        DialogTextData: [
+    dialogTextDataPage: {
+        dialogTextData: [
             {message: "Hello"},
             {message: "How are you?"},
             {message: "Tomorrow we go to the ZOO"},
             {message: "Cool!!!"}
         ]
-    }
+    },
+
 }
 
+export let addPost = (postText: string) => {
+    let newPost: myPostsDataType = {
+        id: v1(),
+        avatar: "Photo",
+        message: postText
+    }
+    state.myPostsDataPage.myPostsData.push(newPost)
+    rerenderEntireTree();
+}
+
+
+export let changeNewText= (newText:  string) => {
+    state.myPostsDataPage.messageForNewPost = newText;
+    rerenderEntireTree();
+}
+export const subscribe = (observer:()=>void) => {
+    rerenderEntireTree = observer;
+}

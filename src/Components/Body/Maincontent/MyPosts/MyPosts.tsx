@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./MyPosts.module.css"
-import {MyPostsDataType} from "../../../../Redux/State";
+import {addPost, changeNewText, myPostsDataType} from "../../../../Redux/State";
 
 type ItemPostPropsType = {
     avatar: string
@@ -15,21 +15,24 @@ const ItemPost = (props: ItemPostPropsType) => {
         </div>
     );
 }
-type myPostsType = {
-    MyPostsData: Array<MyPostsDataType>
+type MyPostsPropsType = {
+    myPostsData: Array<myPostsDataType>
+    addPost: (postText: string) => void
+    messageForNewPost: string
+    changeNewPost:(newText:string)=>void
 }
 
-export const MyPosts = (props: myPostsType) => {
+export const MyPosts = (props: MyPostsPropsType) => {
 
-    const PostsElements = props.MyPostsData.map(posts => <ItemPost avatar={posts.avatar} message={posts.message}/>)
-
-    let newPostElement = React.createRef();
+    const postsElements = props.myPostsData.map(posts => <ItemPost key={posts.id}
+                                                                   avatar={posts.avatar}
+                                                                   message={posts.message}/>)
 
     let addPost = () => {
-
-        let text = newPostElement.current.value
-        alert(text)
+        props.addPost(props.messageForNewPost)
     }
+
+
     return (
 
         <div className={s.MyPosts}>
@@ -37,22 +40,21 @@ export const MyPosts = (props: myPostsType) => {
             <span>My posts</span>
 
             <div className={s.Text}>
-                <textarea ref={newPostElement}></textarea>
+                <textarea onChange={(e)=> {props.changeNewPost(e.currentTarget.value)}} value={props.messageForNewPost}/>
             </div>
-    <div className={s.Button}>
-        <button onClick={addPost}>Send</button>
-    </div>
+            <div className={s.Button}>
+                <button onClick={addPost}>Send</button>
+            </div>
 
-    <div className={s.Posts}>
+            <div className={s.Posts}>
+                <div className={s.Item}>
 
-        <div className={s.Item}>
+                    {postsElements}
 
-            {PostsElements}
-
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-)
+    )
 }
 
 
