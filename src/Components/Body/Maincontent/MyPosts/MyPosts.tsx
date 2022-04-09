@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./MyPosts.module.css"
-import {addPost, changeNewText, myPostsDataType} from "../../../../Redux/State";
+import { myPostsDataType} from "../../../../Redux/Store";
 
 type ItemPostPropsType = {
     avatar: string
