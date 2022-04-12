@@ -1,6 +1,10 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import s from "./MyPosts.module.css"
-import { myPostsDataType} from "../../../../Redux/Store";
+import {
+    addPostAC,
+    changeNewPostAC,
+    myPostsDataType
+} from "../../../../Redux/Store";
 
 type ItemPostPropsType = {
     avatar: string
@@ -17,9 +21,9 @@ const ItemPost = (props: ItemPostPropsType) => {
 }
 type MyPostsPropsType = {
     myPostsData: Array<myPostsDataType>
-    addPost: (postText: string) => void
     messageForNewPost: string
-    changeNewPost:(newText:string)=>void
+    dispatch: (action: ReturnType<typeof addPostAC> | ReturnType<typeof changeNewPostAC>) => void
+
 }
 
 export const MyPosts = (props: MyPostsPropsType) => {
@@ -29,9 +33,14 @@ export const MyPosts = (props: MyPostsPropsType) => {
                                                                    message={posts.message}/>)
 
     let addPost = () => {
-        props.addPost(props.messageForNewPost)
-    }
+        //props.addPost(props.messageForNewPost)
+        props.dispatch( {type: "ADD-POST", postText: props.messageForNewPost})
+    };
 
+    let newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.dispatch({type: "CHANGE-NEW-POST", newText: props.messageForNewPost})
+      // let text = props.changeNewPost(e.currentTarget.value)
+    };
 
     return (
 
@@ -40,7 +49,8 @@ export const MyPosts = (props: MyPostsPropsType) => {
             <span>My posts</span>
 
             <div className={s.Text}>
-                <textarea onChange={(e)=> {props.changeNewPost(e.currentTarget.value)}} value={props.messageForNewPost}/>
+                <textarea onChange={(e) => {newTextChangeHandler}} value={props.messageForNewPost}/>
+
             </div>
             <div className={s.Button}>
                 <button onClick={addPost}>Send</button>

@@ -36,11 +36,23 @@ export type rootStateType = {
 
 export type storeType = {
     _state: rootStateType
-    changeNewPost: (newText: string) => void
-    addPost: (postText: string) => void
     subscribe: (observer: () => void) => void
     _rerenderEntireTree: () => void
     getState: () => rootStateType
+    dispatch: (action: ReturnType<typeof addPostAC>| ReturnType<typeof changeNewPostAC>) => void
+}
+
+export const addPostAC = (PostText: string) => {
+    return {
+        type: "ADD-POST",
+        postText: PostText
+    }as const;
+}
+export const changeNewPostAC = (NewText: string) => {
+    return {
+        type: "CHANGE-NEW-POST",
+        newText: NewText
+    }as const;
 }
 
 export let store: storeType = {
@@ -67,7 +79,6 @@ export let store: storeType = {
                 {id: v1(), name: "Ivan"}
             ]
         },
-
         dialogTextDataPage: {
             dialogTextData: [
                 {message: "Hello"},
@@ -76,22 +87,8 @@ export let store: storeType = {
                 {message: "Cool!!!"}
             ]
         },
-    },
-    changeNewPost(newText: string) {
-        this._state.myPostsDataPage.messageForNewPost = newText;
-        this._rerenderEntireTree();
-    },
 
-    addPost(postText: string) {
-        let newPost: myPostsDataType = {
-            id: v1(),
-            avatar: "Photo",
-            message: postText
-        }
-        this._state.myPostsDataPage.myPostsData.push(newPost)
-        this._rerenderEntireTree();
     },
-
     _rerenderEntireTree() {
         console.log("State changed")
     },
@@ -101,6 +98,25 @@ export let store: storeType = {
     //метод, который возвращает state
     getState() {
         return this._state
+    },
+
+    dispatch(action: ReturnType<typeof addPostAC>| ReturnType<typeof changeNewPostAC>) {
+
+        if (action.type === "ADD-POST") {
+            let newPost: myPostsDataType = {
+                id: v1(),
+                avatar: "Photo",
+                message: action.postText
+            }
+            this._state.myPostsDataPage.myPostsData.push(newPost)
+            this._rerenderEntireTree();
+            debugger;
+
+        } else if (action.type === "CHANGE-NEW-POST") {
+            this._state.myPostsDataPage.messageForNewPost = action.newText;
+            this._rerenderEntireTree();
+        }
     }
 
 }
+

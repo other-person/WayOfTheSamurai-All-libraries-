@@ -8,12 +8,15 @@ import {Music} from "./Music/Music";
 import {News} from "./News/News";
 import {Settings} from "./Settings/Settings";
 import {
+    addPostAC,
+    changeNewPostAC,
     dialogItemDataType,
     dialogTextDataType,
     myPostsDataType,
     rootStateType,
     storeType
 } from "../../Redux/Store";
+import {message} from "antd";
 
 type BodyPropsType = {
     store: storeType
@@ -21,9 +24,8 @@ type BodyPropsType = {
     myPostsData: Array<myPostsDataType>
     dialogItemData: Array<dialogItemDataType>
     dialogsTextData: Array<dialogTextDataType>
-    addPost: (postText: string) => void
     messageForNewPost: string
-    changeNewPost: (newText: string) => void
+    dispatch: (action: ReturnType<typeof addPostAC>| ReturnType<typeof changeNewPostAC>) => void
 }
 
 export const Body = (props: BodyPropsType) => {
@@ -36,9 +38,8 @@ export const Body = (props: BodyPropsType) => {
 
             <Route path="/Profile" render={() => <MainContent
                 myPostsData={props.store._state.myPostsDataPage.myPostsData}
-                addPost={props.store.addPost.bind(props.store)}
-                messageForNewPost={props.store._state.myPostsDataPage.messageForNewPost}
-                changeNewPost={props.store.changeNewPost.bind(props.store)}
+                messageForNewPost={props.messageForNewPost}
+                dispatch={props.dispatch}
             />}/>
 
             <Route path="/Messages"

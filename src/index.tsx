@@ -6,12 +6,13 @@ import {store} from "./Redux/Store";
 import {BrowserRouter} from "react-router-dom";
 
 
-
 let rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App store={store} state={store.getState()} addPost={store.addPost.bind(store)}
-                 changeNewPost={store.changeNewPost.bind(store)} />
+            <App store={store} state={store.getState()}
+                 dispatch={store.dispatch.bind(store)}
+                 messageForNewPost={store._state.myPostsDataPage.messageForNewPost}
+            />
         </BrowserRouter>
         , document.getElementById('root'));
 }
