@@ -23,7 +23,8 @@
     font-family: 'Roboto', sans-serif;
     outline: none;
 }
-.Button button{
+
+.Button button {
     font-size: 18px;
     padding: 5px 15px;
     color: #163b5b;
@@ -32,24 +33,32 @@
     border-radius: 6px;
     margin-top: 10px;
 }
+
 .Posts {
     margin-top: 30px;
+    min-height: 100vh;
 }
-.Item {
-    /*display: flex;*/
 
-
+.CompanionItems {
+    display: flex;
+    flex-direction: column;
 }
-.Item img{
+
+.CompanionItem {
+    display: flex;
+    align-content: stretch;
+    align-items: flex-end;
+}
+
+.Item img {
     max-height: 90px;
     max-width: 80px;
-    display: block;
     border-radius: 50%;
     margin: 20px 20px 20px 0;
 }
+
 .Item p {
     font-size: 18px;
     color: #163b5b;
     font-family: 'Roboto', sans-serif;
-
 }

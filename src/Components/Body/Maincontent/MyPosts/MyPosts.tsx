@@ -14,8 +14,11 @@ type ItemPostPropsType = {
 const ItemPost = (props: ItemPostPropsType) => {
 
     return (
-        <div className={s.Item}>
-            <img src={props.avatar} alt=""/> <p>{props.message}</p>
+        <div className={s.CompanionItems}>
+            <div className={s.CompanionItem}>
+                <img src={props.avatar} alt="avatar"/>
+                <p>{props.message}</p>
+            </div>
         </div>
     );
 }
@@ -34,12 +37,15 @@ export const MyPosts = (props: MyPostsPropsType) => {
 
     let addPost = () => {
         //props.addPost(props.messageForNewPost)
-        props.dispatch( {type: "ADD-POST", postText: props.messageForNewPost})
+        props.dispatch( addPostAC(props.messageForNewPost))
     };
 
     let newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: "CHANGE-NEW-POST", newText: props.messageForNewPost})
-      // let text = props.changeNewPost(e.currentTarget.value)
+        props.dispatch( changeNewPostAC(e.currentTarget.value))
+
+
+        //props.dispatch({type: "CHANGE-NEW-POST", newText: props.messageForNewPost})
+            //let text = props.changeNewPost(e.currentTarget.value)
     };
 
     return (
@@ -49,7 +55,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
             <span>My posts</span>
 
             <div className={s.Text}>
-                <textarea onChange={(e) => {newTextChangeHandler}} value={props.messageForNewPost}/>
+                <textarea onChange={newTextChangeHandler} value={props.messageForNewPost}/>
 
             </div>
             <div className={s.Button}>

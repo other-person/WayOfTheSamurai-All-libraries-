@@ -8,24 +8,30 @@ import {Music} from "./Music/Music";
 import {News} from "./News/News";
 import {Settings} from "./Settings/Settings";
 import {
-    addPostAC,
+    addDialogMessageAC,
+    addPostAC, changeDialogPostAC,
     changeNewPostAC,
     dialogItemDataType,
     dialogTextDataType,
     myPostsDataType,
     rootStateType,
-    storeType
+    StoreType
 } from "../../Redux/Store";
-import {message} from "antd";
 
 type BodyPropsType = {
-    store: storeType
+    store: StoreType
     state: rootStateType
     myPostsData: Array<myPostsDataType>
     dialogItemData: Array<dialogItemDataType>
     dialogsTextData: Array<dialogTextDataType>
     messageForNewPost: string
-    dispatch: (action: ReturnType<typeof addPostAC>| ReturnType<typeof changeNewPostAC>) => void
+    messageForDialogs: string
+    dispatch: (action:
+                   ReturnType<typeof addPostAC> |
+                   ReturnType<typeof changeNewPostAC> |
+                   ReturnType<typeof addDialogMessageAC> |
+                   ReturnType<typeof changeDialogPostAC>
+    ) => void
 }
 
 export const Body = (props: BodyPropsType) => {
@@ -44,8 +50,12 @@ export const Body = (props: BodyPropsType) => {
 
             <Route path="/Messages"
                    render={() => <Dialog
+                       messageForDialogs={props.store._state.dialogTextDataPage.messageForDialogs}
                        dialogItemData={props.store._state.dialogItemDataPage.dialogItemData}
-                       dialogsTextData={props.dialogsTextData}/>}/>
+                       dialogsTextData={props.dialogsTextData}
+                       dispatch={props.dispatch}
+                   />
+                   }/>
             <Route path="/News" render={() => <News/>}/>
             <Route path="/Music" render={() => <Music/>}/>
             <Route path="/Settings" render={() => <Settings/>}/>

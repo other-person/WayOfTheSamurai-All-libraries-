@@ -52,3 +52,29 @@ a.active {
 .DialogText :nth-child(even)  {
     text-align: right;
 }
+
+.wrapperText {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+}
+.wrapperText textarea {
+    height: 50px;
+    border-radius: 13px;
+    padding: 10px;
+    font-size: 18px;
+    color: #163b5b;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+}
+.wrapperText button {
+    width: 150px;
+    font-size: 18px;
+    padding: 5px 15px;
+    color: #163b5b;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #163b5b;
+    border-radius: 6px;
+    margin-top: 10px;
+}

@@ -8,8 +8,9 @@
 }
 
 .MyLogo img {
-    width: 70%;
     border-radius: 13px;
+    width: 150px;
+
 }
 
 .MyDescription {

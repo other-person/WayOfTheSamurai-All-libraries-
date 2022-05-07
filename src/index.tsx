@@ -12,6 +12,7 @@ let rerenderEntireTree = () => {
             <App store={store} state={store.getState()}
                  dispatch={store.dispatch.bind(store)}
                  messageForNewPost={store._state.myPostsDataPage.messageForNewPost}
+                 messageForDialogs = {store._state.dialogTextDataPage.messageForDialogs}
             />
         </BrowserRouter>
         , document.getElementById('root'));

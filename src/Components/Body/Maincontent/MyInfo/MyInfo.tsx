@@ -5,7 +5,10 @@ export const MyInfo = () => {
     return (
         <div className={s.MyInfo}>
             <div className={s.WrapperMyInfo}>
-                <div className={s.MyLogo}><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFs5HTKG4zAWz1Y4vwdWFc_Iv6fLf3jDdvmw&usqp=CAU" alt="Avatar"/></div>
+                <div className={s.MyLogo}>
+                    <img src="https://avatars.mds.yandex.net/get-zen_doc/927575/pub_5d5a70db44742600ad5c03c3_5d5a72cc1d656a00ad1f3ec0/scale_1200" alt="Ava"/>
+
+                </div>
                 <div className={s.MyDescription}>
                     <span>Taras Bazhenka</span>
                     <span>Date of Birth: 13.08.87</span>

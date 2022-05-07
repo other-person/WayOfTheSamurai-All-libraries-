@@ -11,7 +11,10 @@ import {
 type MainContentPropsType = {
     myPostsData: Array<myPostsDataType>
     messageForNewPost: string
-    dispatch: (action: ReturnType<typeof addPostAC>| ReturnType<typeof changeNewPostAC>) => void
+    dispatch: (action:
+                   ReturnType<typeof addPostAC> |
+                   ReturnType<typeof changeNewPostAC>
+    ) => void
 
 }
 
