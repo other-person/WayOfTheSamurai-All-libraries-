@@ -1,6 +1,7 @@
 import React from "react";
 import {v1} from "uuid";
-
+import myPostsReducer from "./MyPostReducer";
+import dialogReducer from "./DialogReducer";
 
 export type myPostsDataType = {
     id: string
@@ -26,7 +27,7 @@ export type myPostsDataPageType = {
     myPostsData: Array<myPostsDataType>
     messageForNewPost: string
 }
-export type DialogTextDataPageType = {
+export type dialogTextDataPageType = {
     dialogTextData: Array<dialogTextDataType>
     messageForDialogs: string
 }
@@ -34,20 +35,21 @@ export type DialogTextDataPageType = {
 export type rootStateType = {
     myPostsDataPage: myPostsDataPageType
     dialogItemDataPage: dialogItemDataPageType
-    dialogTextDataPage: DialogTextDataPageType
+    dialogTextDataPage: dialogTextDataPageType
 }
+
+export type ActionsType =
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof changeNewPostAC>
+    | ReturnType<typeof addDialogMessageAC>
+    | ReturnType<typeof changeDialogPostAC>
 
 export type StoreType = {
     _state: rootStateType
     subscribe: (observer: () => void) => void
     _rerenderEntireTree: () => void
     getState: () => rootStateType
-    dispatch: (action:
-                   ReturnType<typeof addPostAC> |
-                   ReturnType<typeof changeNewPostAC> |
-                   ReturnType<typeof addDialogMessageAC>|
-                   ReturnType<typeof changeDialogPostAC>
-    ) => void
+    dispatch: (action: ActionsType) => void
 }
 
 export const addPostAC = (PostText: string) => {
@@ -123,41 +125,13 @@ export let store: StoreType = {
         return this._state
     },
 
-    dispatch(action:
-                 ReturnType<typeof addPostAC> |
-                 ReturnType<typeof changeNewPostAC> |
-                 ReturnType<typeof addDialogMessageAC> |
-                 ReturnType<typeof changeDialogPostAC>
-    ) {
+    dispatch(action: ActionsType) {
 
-        if (action.type === "ADD_POST") {
-            let newPost: myPostsDataType = {
-                id: v1(),
-                avatar: "Photo",
-                message: action.postText
-            }
-            this._state.myPostsDataPage.myPostsData.push(newPost)
-            this._state.myPostsDataPage.messageForNewPost = "";
-            this._rerenderEntireTree();
+        this._state.dialogTextDataPage = dialogReducer(this._state.dialogTextDataPage, action);
+        this._state.myPostsDataPage = myPostsReducer(this._state.myPostsDataPage, action);
 
-        } else if (action.type === "CHANGE_NEW_POST") {
-            this._state.myPostsDataPage.messageForNewPost = action.newText;
-            this._rerenderEntireTree();
 
-        } else if (action.type === "ADD_DIALOG_MESSAGE") {
-            let newDialog: dialogTextDataType = {
-                id: v1(),
-                message: action.dialogMessage
-            }
-            this._state.dialogTextDataPage.dialogTextData.push(newDialog)
-            this._state.dialogTextDataPage.messageForDialogs = "";
-            this._rerenderEntireTree();
-
-        } else if (action.type === "CHANGE_DIALOG_MESSAGE") {
-            this._state.dialogTextDataPage.messageForDialogs = action.newMessage;
-            this._rerenderEntireTree();
-
-        }
-
+        this._rerenderEntireTree()
     }
+
 }

@@ -73,7 +73,7 @@ export const Dialog = (props: DialogType) => {
             </div>
 
             <div className={s.wrapperText}>
-                <textarea onChange={newTextDialogChange}></textarea>
+                <textarea onChange={newTextDialogChange} value = {props.messageForDialogs}></textarea>
 
                 <button onClick={addMessageForDialogHandler}>Send</button>
 
