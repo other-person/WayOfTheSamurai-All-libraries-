@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from "react";
 import s from "./Dialog.module.css"
-import {NavLink} from "react-router-dom";
+
+
 import {
     addDialogMessageAC,
     addPostAC,
@@ -10,6 +11,7 @@ import {
     rootStateType,
     StoreType
 } from "../../../Redux/Store";
+import {NavLink} from "react-router-dom";
 
 type DialogType = {
     dialogItemData: Array<dialogItemDataType>

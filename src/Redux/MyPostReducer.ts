@@ -1,11 +1,11 @@
 import {v1} from "uuid";
-import {ActionsType, myPostsDataPageType, myPostsDataType} from "./Store";
-
+import {ActionsType, myPostsDataPageType} from "./Store";
 
 const myPostsReducer = (state: myPostsDataPageType, action: ActionsType) => {
     switch (action.type) {
         case  "ADD_POST":
-            let newPost: myPostsDataType = {
+
+            let newPost = {
                 id: v1(),
                 avatar: "Photo",
                 message: action.postText
