@@ -2,10 +2,10 @@ import {v1} from "uuid";
 import {ActionsType, dialogTextDataPageType, dialogTextDataType} from "./Store";
 
 
- const dialogReducer = (state: dialogTextDataPageType, action: ActionsType ) => {
+const dialogReducer = (state: dialogTextDataPageType, action: ActionsType ) => {
      switch (action.type) {
 
-         case "ADD_DIALOG_MESSAGE":
+         case  "ADD_DIALOG_MESSAGE":
              let newDialog: dialogTextDataType = {
                  id: v1(),
                  message: action.dialogMessage
